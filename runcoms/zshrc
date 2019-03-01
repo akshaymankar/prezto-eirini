@@ -4,10 +4,54 @@
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
-
+export TERM="xterm-256color"
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
 # Customize to your needs...
+
+autoload -Uz promptinit
+promptinit
+prompt nicoulaj
+zstyle ':prezto:load' pmodule
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export EDITOR=nvim
+
+export GIT_DUET_GLOBAL=true
+export GIT_DUET_ROTATE_AUTHOR=1
+export GIT_DUET_SET_GIT_USER_CONFIG=1
+
+export PATH="${HOME}/go/bin:${PATH}"
+export PATH="${HOME}/.local/bin:${PATH}"
+
+## Export /usr/local/sbin as fix for openvpn brew link failures.
+export PATH="/usr/local/sbin:${PATH}"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+
+## AutoJump and FASD
+
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+eval "$(fasd --init auto)"
+
+## Direnv
+
+eval "$(direnv hook zsh)"
+
+## Google Cloud SDK
+
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+
+## Aliases
+
+alias vim=nvim
+alias vi=nvim
+alias gingko=ginkgo
+alias kbuectl=kubectl
+alias gti=git
+alias vimdiff="nvim -d"
