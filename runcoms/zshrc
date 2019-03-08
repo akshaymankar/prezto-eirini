@@ -14,7 +14,7 @@ fi
 
 autoload -Uz promptinit
 promptinit
-prompt nicoulaj
+prompt spaceship
 zstyle ':prezto:load' pmodule
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
