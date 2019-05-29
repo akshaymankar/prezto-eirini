@@ -14,7 +14,7 @@ fi
 
 autoload -Uz promptinit
 promptinit
-prompt spaceship
+prompt nicoulaj
 zstyle ':prezto:load' pmodule
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -47,6 +47,10 @@ eval "$(direnv hook zsh)"
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
 
+## IBM Cloud
+
+source '/usr/local/ibmcloud/autocomplete/zsh_autocomplete'
+
 ## Aliases
 
 alias vim=nvim
@@ -55,3 +59,13 @@ alias gingko=ginkgo
 alias kbuectl=kubectl
 alias gti=git
 alias vimdiff="nvim -d"
+
+## Eirini
+
+eirini-lite () {
+  cf auth admin ${1:-kobe}
+  cf create-org o
+  cf target -o o
+  cf create-space s
+  cf target -o o -s s
+}
